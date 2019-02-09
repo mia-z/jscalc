@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Javascript Calculator</title>
+        <meta charset="utf-8"/>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="text/javascript" src="/wwwroot/js/bootstrap.js"></script>
+        <script type="text/javascript" src="/wwwroot/js/main.js"></script>
+        <script type="text/javascript" src="/wwwroot/js/calc.js"></script>
+        <link rel="stylesheet" href="wwwroot/css/main.css">
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <span class="navbar-brand mb-0 h1">Javascript Calculator</span>
+                <div class="btn-group mr-auto" role="group" aria-label="Button group with nested dropdown">
+                    <div class="btn-group" role="group">
+                        <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Calculator Skins
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                <button class="dropdown-item"  id="iphone-skin-button" value="iphone">iPhone</button>
+                                <button class="dropdown-item" id="classic-skin-button" value="classic">Classic</button>
+                                <button class="dropdown-item" id="ti84-skin-button" value="ti84">TI-84</button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <main>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#helpModal">
+                Press for help
+            </button>
+            <div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="helpModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="helpModalCenterTitle">pls read ;_;</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                            Calculator graphic is a replica of that featured on iPhones,
+                            otherwise, everything else is created purely from javascript!
+                            <br /> ---- <br />
+                            Instructions:
+                            <br />
+                            <ul>
+                                <li>Pressing the AC button deletes the last entered number</li>
+                                <li>HOLDING SHIFT and pressing AC clears the calculator</li>
+                                <li>Percentage(%) is for modulus operations(remainders)</li>
+                                <li>Try break something hehe</li>
+                            </ul>
+
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            <div class="wrapper outer">
+                <div class="calc-box inner">
+
+                </div>
+            </div>
+        </main>
+    </body>
+</html>

@@ -1,0 +1,76 @@
+@import "/wwwroot/css/bootstrap.css";
+@import url('https://fonts.googleapis.com/css?family=Staatliches');
+
+* {
+    box-sizing: border-box;
+}
+
+.outer {
+    padding-top: 10px;
+    margin: 0 auto;
+    width: 411px;
+    height: 831px;
+}
+
+.inner {
+    position: relative;
+    width: 100%;
+}
+
+.inner img {
+    position: absolute; top: 0; left: 0;
+}
+
+#calc-click-area {
+    pointer-events: auto;
+}
+
+.screen-wrapper {
+    display: flex;
+    flex-flow: column wrap;
+    position: absolute;
+    background-color: rgba(95, 95, 95, 0.075);
+    top: 60px; left: 15px;
+    z-index: 10;
+    height: 225px; width: calc(100% - 30px);
+}
+
+.button-overlay {
+    position: absolute;
+    background: rgba(95, 95, 95, 0.25);
+    z-index: 11;
+    height: 78px; width: 78px;
+    border-radius: 45px;
+    pointer-events: none;
+}
+
+.button-overlay-zero {
+    position: absolute;
+    background: rgba(95, 95, 95, 0.25);
+    z-index: 11;
+    height: 78px; width: 165px;
+    top: 640px; left: 37px;
+    border-radius: 45px;
+    pointer-events: none;
+}
+
+.screen-row {
+    width: 100%;
+    height: 33%;
+}
+
+p[id^="screen-row-field"] {
+    text-align: right;
+    font-family: 'Staatliches', cursive;
+    font-size: 42pt;
+    color: whitesmoke;
+    word-break: break-all;
+}
+
+#screen-row-field2 {
+    text-align: left;
+}
+
+div[id^="screen-row"] {
+    background-color: rgba(56, 56, 56, 0.61);
+}

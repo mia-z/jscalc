@@ -7,6 +7,7 @@ var operaterUsedLast;
 var pressedEquals;
 var deciPressed;
 var currentCalc;
+//var newCalc;
 
 
 $(document).ready(function() {
@@ -18,6 +19,7 @@ $(document).ready(function() {
     operaterUsedLast = true;
     pressedEquals = false;
     deciPressed = false;
+    //newCalc = true;
     currentCalc = [];
 });
 
@@ -172,6 +174,7 @@ function areaMouseClick(x, e) {
                 totalBottom++;
             } old method for making numbers not bleed out*/
             if (!pressedEquals) {
+                //if (newCalc) { $("#screen-row-field3").contents.empty(); newcalc = false; }
                 $("#screen-row-field3").append(x.alt);
                 console.log($("#screen-row-field3").html());
                 totalBottom++;
@@ -231,10 +234,15 @@ function areaMouseClick(x, e) {
 }
 
 //i honestly thought this part would be the hardest. NOPE!
+//jk LOL this is (kinda) wrong. it doesnt do BIDMAS/PEDMAS.
+//it executes the operations in succession, and not the correct
+//arithmetical order.
+//HERES ME CREATING A METHOD THAT EVALUTES AN ARITHMETIC STRING
+//WHEN THE FUNCTION ALRADY EXISTS GRRRRRRRRR
 function calculateNumbers() {
     console.log(currentCalc);
     let finalInt;
-    for (let x = 0; x < currentCalc.length; x+=2) {
+    /*for (let x = 0; x < currentCalc.length; x+=2) {
         if (x == 0) {
             finalInt = currentCalc[x];
             console.log(finalInt);
@@ -256,7 +264,10 @@ function calculateNumbers() {
                 finalInt = Number(finalInt) % Number(currentCalc[x]);
                 break;
         }
-    }
+    }*/
+    let finalString = $("#screen-row-field2").text() + $("#screen-row-field3").text();
+    console.log(finalString);
+    finalInt = eval(finalString);
     return finalInt;
 }
 

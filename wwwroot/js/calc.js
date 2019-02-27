@@ -7,6 +7,7 @@ var operaterUsedLast;
 var pressedEquals;
 var deciPressed;
 var currentCalc;
+var oneAtATime;
 //var newCalc;
 
 
@@ -21,6 +22,7 @@ $(document).ready(function() {
     deciPressed = false;
     //newCalc = true;
     currentCalc = [];
+    oneAtATime = false;
 });
 
 class Calc {
@@ -181,7 +183,7 @@ function areaMouseClick(x, e) {
                 numberUsed = true;
                 operaterUsedLast = false;
             } else {
-                alert("user an oeprator!");
+                alert("use an oeprator!");
             }
             break;
         case "deci":
@@ -192,9 +194,14 @@ function areaMouseClick(x, e) {
         case "minus":
         case "add":
         case "pct":
+            if (numberUsed == true &&
+                oneAtATime == true) {
+                    oaat();
+                }
             if ((numberUsed == true && operaterUsedLast == false)
                 || pressedEquals == true) {
                 let s = $("#screen-row-field3").text();
+                $("#screen-row-field2").contents().remove();
                 $("#screen-row-field2").append(s + getSymbol(x.alt));
                 if (!s =="") { currentCalc.push(s); }
                 currentCalc.push(getSymbol(x.alt));
@@ -205,31 +212,36 @@ function areaMouseClick(x, e) {
                 operaterUsedOnce = true;
                 pressedEquals = false;
                 deciPressed = false;
+                oneAtATime = true;
             } else {
                 alert("Selected a number first");
             }
             console.log("bottom length:"+totalBottom+"-middle length:"+totalMiddle);
             break;
         case "equals":
-        console.log($("#screen-row-field3").text().length)
-            if ($("#screen-row-field3").text().length > 0 
-                && operaterUsedLast == false
-                && operaterUsedOnce == true) {
-                $("#screen-row-field1").contents().remove();
-                let btm = $("#screen-row-field3").text();
-                currentCalc.push(btm);
-                console.log(currentCalc);
-                $("#screen-row-field2").append(btm);
-                $("#screen-row-field3").contents().remove();
-                operatorUsedLast = false;
-                operaterUsedOnce = false;
-                numberUsed = false;
-                pressedEquals = true;
-                $("#screen-row-field1").append(calculateNumbers());
-            } else {
-                alert("enter a second number");
-            }
+            oaat();
             break;
+    }
+}
+
+function oaat() {
+    console.log($("#screen-row-field3").text().length)
+    if ($("#screen-row-field3").text().length > 0 
+        && operaterUsedLast == false
+        && operaterUsedOnce == true) {
+        $("#screen-row-field1").contents().remove();
+        let btm = $("#screen-row-field3").text();
+        currentCalc.push(btm);
+        console.log(currentCalc);
+        $("#screen-row-field2").append(btm);
+        $("#screen-row-field3").contents().remove();
+        operatorUsedLast = false;
+        operaterUsedOnce = false;
+        numberUsed = false;
+        pressedEquals = true;
+        $("#screen-row-field1").append(calculateNumbers());
+    } else {
+        //alert("enter a second number");
     }
 }
 
@@ -238,11 +250,11 @@ function areaMouseClick(x, e) {
 //it executes the operations in succession, and not the correct
 //arithmetical order.
 //HERES ME CREATING A METHOD THAT EVALUTES AN ARITHMETIC STRING
-//WHEN THE FUNCTION ALRADY EXISTS GRRRRRRRRR
+//WHEN THE FUNCTION ALREADY EXISTS GRRRRRRRRR
 function calculateNumbers() {
     console.log(currentCalc);
     let finalInt;
-    /*for (let x = 0; x < currentCalc.length; x+=2) {
+    for (let x = 0; x < currentCalc.length; x+=2) {
         if (x == 0) {
             finalInt = currentCalc[x];
             console.log(finalInt);
@@ -264,10 +276,15 @@ function calculateNumbers() {
                 finalInt = Number(finalInt) % Number(currentCalc[x]);
                 break;
         }
-    }*/
-    let finalString = $("#screen-row-field2").text() + $("#screen-row-field3").text();
-    console.log(finalString);
-    finalInt = eval(finalString);
+    }
+    //let finalString = $("#screen-row-field2").text() + $("#screen-row-field3").text();
+    //console.log(finalString);
+    //finalInt = eval(finalString);
+    //using eval is for pussies and idiots.
+    //was also a lot more fun doing it this way.
+    //ok so i made a mockup for an algorithm that splits operators, but i felt
+    //it was extremely overkill, instead im going to fix the bidmas problem
+    //by making the calculator only perform 1 calculation at a time.
     return finalInt;
 }
 

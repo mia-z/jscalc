@@ -366,12 +366,17 @@ function makeIphone() {
             Number(x+(a*offset)) +"," + //x
             Number(y+(b*offset)) +"," + //y
             "40'"+ //radius
-            "href='#'" +
-            "onclick='areaMouseClick(this, event)'" +
-            "onmouseover='areaMouseOver(this)'" +
-            "onmouseout='areaMouseOut(this)'" +
             "alt='" + button_symbols[counter] + "'>");
             counter++;
+            $("#calc-click-area"+a+b).on("click", function(event) {
+                areaMouseClick(this, event);
+            });
+            $("#calc-click-area"+a+b).on("mouseover", function() {
+                areaMouseOver(this);
+            });
+            $("#calc-click-area"+a+b).on("mouseout", function() {
+                areaMouseOut(this);
+            });
         }
     }
     $(".calc-box").append("</map>");
